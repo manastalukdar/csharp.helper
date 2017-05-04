@@ -1,0 +1,114 @@
+version: 1.0.{build}
+
+assembly_info:
+  patch: true
+  file: '**\AssemblyInfo.*'
+  assembly_version: "{version}"
+  assembly_file_version: "{version}"
+
+os:
+- Visual Studio 2015
+
+environment:
+  CoverityNotificationEmail: 
+    secure: m5dUGlXCJd3VF0wrk30yjpPAzHfu0H3rlNdSijt4CRI=
+  CoverityProjectToken:
+    secure: osLAPCViJVYMEkRZB+AxU1QHR9SVN9+WlMsyXhb5qtc=
+  matrix:
+  - solution_name: csharp.Helper.sln
+
+configuration:
+  - Debug
+  - Release
+
+platform:
+  - Any CPU
+
+before_build:
+  - appveyor DownloadFile https://dist.nuget.org/win-x86-commandline/v3.2.0-rc/nuget.exe
+  - appveyor DownloadFile https://raw.githubusercontent.com/appveyor/ci/master/scripts/nuget-restore.cmd
+  - nuget-restore
+  - cmd: nuget.exe install publishcoverity
+
+after_build:
+  - curl -fsS -o nuget/nuget.exe https://dist.nuget.org/win-x86-commandline/v3.2.0-rc/nuget.exe
+
+build:
+  parallel: true 
+
+build_script:
+- ps: |    
+    $buildCmd = "C:\Program Files (x86)\MSBuild\14.0\bin\msbuild.exe"
+    $buildArgs = @(
+      "/m",
+      "/l:C:\Program Files\AppVeyor\BuildAgent\Appveyor.MSBuildLogger.dll",
+      "/p:Configuration=$env:CONFIGURATION",
+      "/p:Platform=$env:PLATFORM")
+    
+    # If build is not a scheduled one, then simply build the project with
+    # MSBuild.
+    if ($env:APPVEYOR_SCHEDULED_BUILD -ne "True") {
+      & $buildCmd $buildArgs
+      return
+    }
+    
+    # Else, build project with Coverity Scan.
+    "Building project with Coverity..."
+    & cov-build.exe --dir cov-int --encoding=UTF-8 $buildCmd $buildArgs
+      
+    # Compress results.
+    $coverityPublisher =
+      "PublishCoverity.0.11.0\tools\PublishCoverity.exe"
+    "Compressing Coverity results..."
+    & "$coverityPublisher" compress `
+      --nologo `
+      -i "$env:APPVEYOR_BUILD_FOLDER\cov-int" `
+      -o "$env:APPVEYOR_BUILD_FOLDER\$env:APPVEYOR_PROJECT_NAME.zip" `
+      --overwrite
+    
+    # Upload results to Coverity server.
+    "Uploading Coverity results..."  
+    & "$coverityPublisher" publish `
+      --nologo `
+      -t "$env:CoverityProjectToken" `
+      -e "$env:CoverityNotificationEmail" `
+      -r "$env:APPVEYOR_REPO_NAME" `
+      -z "$env:APPVEYOR_BUILD_FOLDER\$env:APPVEYOR_PROJECT_NAME.zip" `
+      -d "CI server scheduled build." `
+      --codeVersion "{version}"
+
+after_test:
+  - ps: .\nuget\pack.ps1
+
+notifications:
+  - provider: Webhook
+    url: https://webhooks.gitter.im/e/f4249eab5378b820dd83
+    on_build_success: true
+    on_build_failure: true
+    on_build_status_changed: true
+
+cache:
+  - packages -> **\packages.config
+
+artifacts:
+  - path: '**\*.nupkg'
+  - path: '**\build-log.txt'
+
+deploy:
+  - provider: NuGet
+    api_key:
+      secure: g59RUxEOk+p4zAfYKuBPbFIK1l2ewSHIa+4gbL5WQOKr6TkHoViqvGyn05CVsfc2
+    skip_symbols: false
+    artifact: /.*\.nupkg/
+    on:
+      branch: never #develop
+      configuration: Debug
+
+  - provider: NuGet
+    api_key:
+      secure: g59RUxEOk+p4zAfYKuBPbFIK1l2ewSHIa+4gbL5WQOKr6TkHoViqvGyn05CVsfc2
+    skip_symbols: false
+    artifact: /.*\.nupkg/
+    on:
+      branch: never #master
+      configuration: Release

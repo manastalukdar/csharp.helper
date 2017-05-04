@@ -1,0 +1,153 @@
+﻿<Window x:Class="csharp.ui.controls.HomeRealmDiscovery.Hrd"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+        Title="Home Realm Discovery"
+        Width="500"
+        Height="435"
+        AllowsTransparency="True"
+        Background="{x:Null}"
+        BorderBrush="#FF3F3F3F"
+        IsTabStop="False"
+        ResizeMode="CanResize"
+        SnapsToDevicePixels="True"
+        TextOptions.TextFormattingMode="Display"
+        TextOptions.TextRenderingMode="ClearType"
+        WindowStartupLocation="CenterOwner"
+        WindowStyle="None"
+        mc:Ignorable="d">
+    <Window.Resources>
+        <ResourceDictionary Source="Resources.xaml" />
+    </Window.Resources>
+    <Border x:Name="m_edgeBorder"
+            Margin="10"
+            Background="White"
+            BorderBrush="{StaticResource WindowStatusBarColorBrush}"
+            BorderThickness="1"
+            IsEnabled="True"
+            IsHitTestVisible="True"
+            x:FieldModifier="private">
+        <Border.Effect>
+            <DropShadowEffect BlurRadius="16"
+                              Opacity="0.999"
+                              ShadowDepth="0" />
+        </Border.Effect>
+        <Grid>
+            <Border BorderBrush="{StaticResource WindowChromeColorBrush}" BorderThickness="0">
+                <Rectangle VerticalAlignment="Top" Grid.ZIndex="-1" />
+            </Border>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="0.1*" />
+                    <RowDefinition Height="0.2*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="0.1*" />
+                </Grid.RowDefinitions>
+                <Grid Grid.Row="0"
+                      Grid.Column="0"
+                      Margin="3">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="0.08*" />
+                        <ColumnDefinition Width="0.8*" />
+                        <ColumnDefinition Width="0.1*" />
+                    </Grid.ColumnDefinitions>
+                    <Rectangle Grid.Row="0"
+                               Grid.ColumnSpan="3"
+                               Height="30"
+                               VerticalAlignment="Top"
+                               Fill="{StaticResource WindowChromeColorBrush}"
+                               MouseLeftButtonDown="Background_MouseLeftButtonDown"
+                               MouseRightButtonDown="HandleMouseRightButtonDown" />
+                    <Image Grid.Column="0"
+                           Width="20"
+                           Height="20"
+                           Margin="10,3"
+                           HorizontalAlignment="Left"
+                           Source=""
+                           Stretch="Fill" />
+                    <TextBlock Grid.Column="1"
+                               Margin="10,3"
+                               HorizontalAlignment="Left"
+                               VerticalAlignment="Center"
+                               Background="{StaticResource WindowChromeColorBrush}"
+                               FontFamily="Segoe UI Semibold"
+                               FontSize="13.333"
+                               Foreground="{StaticResource TitleTextForegroundColorBrush}"
+                               Text="Home Realm Discovery"
+                               TextAlignment="Left"
+                               TextWrapping="Wrap" />
+                    <Grid Grid.Column="2">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="1*" />
+                            <ColumnDefinition Width="1*" />
+                        </Grid.ColumnDefinitions>
+                        <Button Grid.Column="1"
+                                Margin="2"
+                                BorderThickness="0"
+                                Click="HandleCloseClick"
+                                ClickMode="Press"
+                                Style="{StaticResource CaptionButtons}">
+                            <TextBlock Width="19"
+                                       Height="21"
+                                       Background="{StaticResource WindowChromeColorBrush}"
+                                       FontFamily="Webdings"
+                                       FontSize="13.333"
+                                       Foreground="{StaticResource CaptionButtonsForegroundColorBrush}"
+                                       Text="r"
+                                       TextAlignment="Center"
+                                       TextWrapping="Wrap" />
+                        </Button>
+                        <!--
+                            <Button Grid.Column="0"
+                            Margin="2"
+                            BorderThickness="0"
+                            Click="HandleMinimizeClick"
+                            ClickMode="Press"
+                            Style="{StaticResource CaptionButtons}">
+                            <TextBlock Background="{StaticResource WindowChromeColorBrush}"
+                            FontFamily="Webdings"
+                            FontSize="13.333"
+                            Foreground="{StaticResource CaptionButtonsForegroundColorBrush}"
+                            Text="0"
+                            TextAlignment="Center"
+                            TextWrapping="Wrap" />
+                            </Button>
+                        -->
+                    </Grid>
+                </Grid>
+                <TextBlock Grid.Row="1"
+                           Margin="10, 20"
+                           HorizontalAlignment="Left"
+                           VerticalAlignment="Top"
+                           Text="Click on the appropriate login option below."
+                           TextAlignment="Left" />
+                <Grid Name="IdpListGrid"
+                      Grid.Row="2"
+                      Margin="0">
+                    <!--
+                        Button Height="50" Width="230" Margin="105,34,107,324" />
+                        <Button Height="50" Width="230" Margin="105,89,107,269" />
+                    -->
+                </Grid>
+                <Border Grid.Row="3"
+                        BorderBrush="{StaticResource WindowBorderColorBrush}"
+                        BorderThickness="0">
+                    <Rectangle Grid.Row="4"
+                               Grid.ColumnSpan="3"
+                               Height="30"
+                               VerticalAlignment="Top"
+                               Fill="{StaticResource WindowStatusBarColorBrush}"
+                               MouseLeftButtonDown="Background_MouseLeftButtonDown"
+                               MouseRightButtonDown="HandleMouseRightButtonDown" />
+                </Border>
+            </Grid>
+        </Grid>
+    </Border>
+</Window>
