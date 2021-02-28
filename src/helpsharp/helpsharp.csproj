@@ -1,7 +1,9 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net462</TargetFramework>
+    <TargetFramework>net6.0-windows</TargetFramework>
+    <RootNamespace>helpsharp</RootNamespace>
+    <AssemblyName>helpsharp</AssemblyName>
   </PropertyGroup>
 
   <ItemGroup>
@@ -15,76 +17,75 @@
     </COMReference>
   </ItemGroup>
 
-   <ItemGroup> 
-   <PackageReference Include="Microsoft.Azure.KeyVault.Core" Version="2.0.4" />
-  <PackageReference Include="Microsoft.Data.Edm" Version="5.8.2" />
-  <PackageReference Include="Microsoft.Data.OData" Version="5.8.2" />
-  <PackageReference Include="Microsoft.Data.Services.Client" Version="5.8.2" />
-  <PackageReference Include="Microsoft.IdentityModel.Clients.ActiveDirectory" Version="3.13.8" />
-  <PackageReference Include="Microsoft.Win32.Primitives" Version="4.3.0" />
-  <PackageReference Include="Newtonsoft.Json" Version="9.0.1" />
-  <PackageReference Include="System.Collections" Version="4.3.0" />
-  <PackageReference Include="System.Collections.Concurrent" Version="4.3.0" />
-  <PackageReference Include="System.Diagnostics.Debug" Version="4.3.0" />
-  <PackageReference Include="System.Diagnostics.DiagnosticSource" Version="4.3.0" />
-  <PackageReference Include="System.Globalization" Version="4.3.0" />
-  <PackageReference Include="System.IO" Version="4.3.0" />
-  <PackageReference Include="System.Linq" Version="4.3.0" />
-  <PackageReference Include="System.Net.Http" Version="4.3.0" />
-  <PackageReference Include="System.Net.Primitives" Version="4.3.0" />
-  <PackageReference Include="System.Reflection" Version="4.3.0" />
-  <PackageReference Include="System.Reflection.Extensions" Version="4.3.0" />
-  <PackageReference Include="System.Runtime" Version="4.3.0" />
-  <PackageReference Include="System.Runtime.Extensions" Version="4.3.0" />
-  <PackageReference Include="System.Runtime.InteropServices" Version="4.3.0" />
-  <PackageReference Include="System.Runtime.Serialization.Json" Version="4.3.0" />
-  <PackageReference Include="System.Runtime.Serialization.Primitives" Version="4.3.0" />
-  <PackageReference Include="System.Security.Cryptography.Algorithms" Version="4.3.0" />
-  <PackageReference Include="System.Security.Cryptography.Encoding" Version="4.3.0" />
-  <PackageReference Include="System.Security.Cryptography.Primitives" Version="4.3.0" />
-  <PackageReference Include="System.Security.Cryptography.X509Certificates" Version="4.3.0" />
-  <PackageReference Include="System.Spatial" Version="5.8.2" />
-  <PackageReference Include="System.Text.Encoding" Version="4.3.0" />
-  <PackageReference Include="System.Text.Encoding.Extensions" Version="4.3.0" />
-  <PackageReference Include="System.Text.RegularExpressions" Version="4.3.0" />
-  <PackageReference Include="System.Threading" Version="4.3.0" />
-  <PackageReference Include="System.Threading.Tasks" Version="4.3.0" />
-  <PackageReference Include="System.Xml.ReaderWriter" Version="4.3.0" />
-  <PackageReference Include="System.Xml.XDocument" Version="4.3.0" />
-  <PackageReference Include="WindowsAzure.Storage" Version="8.1.0" />
-   </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Azure.Storage.Blobs" Version="12.8.0" />
+    <PackageReference Include="Microsoft.Azure.KeyVault.Core" Version="3.0.5" />
+    <PackageReference Include="Microsoft.Data.Edm" Version="5.8.4" />
+    <PackageReference Include="Microsoft.Data.OData" Version="5.8.4" />
+    <PackageReference Include="Microsoft.Data.Services.Client" Version="5.8.4" />
+    <PackageReference Include="Microsoft.IdentityModel.Clients.ActiveDirectory" Version="5.2.8" />
+    <PackageReference Include="Microsoft.Win32.Primitives" Version="4.3.0" />
+    <PackageReference Include="Microsoft.Win32.Registry" Version="5.0.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
+    <PackageReference Include="System.Collections" Version="4.3.0" />
+    <PackageReference Include="System.Collections.Concurrent" Version="4.3.0" />
+    <PackageReference Include="System.Diagnostics.Debug" Version="4.3.0" />
+    <PackageReference Include="System.Diagnostics.DiagnosticSource" Version="5.0.1" />
+    <PackageReference Include="System.Globalization" Version="4.3.0" />
+    <PackageReference Include="System.IO" Version="4.3.0" />
+    <PackageReference Include="System.IO.FileSystem.AccessControl" Version="5.0.0" />
+    <PackageReference Include="System.Linq" Version="4.3.0" />
+    <PackageReference Include="System.Management" Version="5.0.0" />
+    <PackageReference Include="System.Net.Http" Version="4.3.4" />
+    <PackageReference Include="System.Net.Primitives" Version="4.3.1" />
+    <PackageReference Include="System.Reflection" Version="4.3.0" />
+    <PackageReference Include="System.Reflection.Extensions" Version="4.3.0" />
+    <PackageReference Include="System.Runtime" Version="4.3.1" />
+    <PackageReference Include="System.Runtime.Extensions" Version="4.3.1" />
+    <PackageReference Include="System.Runtime.InteropServices" Version="4.3.0" />
+    <PackageReference Include="System.Runtime.Serialization.Json" Version="4.3.0" />
+    <PackageReference Include="System.Runtime.Serialization.Primitives" Version="4.3.0" />
+    <PackageReference Include="System.Security.Cryptography.Algorithms" Version="4.3.1" />
+    <PackageReference Include="System.Security.Cryptography.Encoding" Version="4.3.0" />
+    <PackageReference Include="System.Security.Cryptography.Primitives" Version="4.3.0" />
+    <PackageReference Include="System.Security.Cryptography.X509Certificates" Version="4.3.2" />
+    <PackageReference Include="System.Security.Cryptography.Xml" Version="5.0.0" />
+    <PackageReference Include="System.Security.Principal.Windows" Version="5.0.0" />
+    <PackageReference Include="System.ServiceProcess.ServiceController" Version="5.0.0" />
+    <PackageReference Include="System.Spatial" Version="5.8.4" />
+    <PackageReference Include="System.Text.Encoding" Version="4.3.0" />
+    <PackageReference Include="System.Text.Encoding.Extensions" Version="4.3.0" />
+    <PackageReference Include="System.Text.RegularExpressions" Version="4.3.1" />
+    <PackageReference Include="System.Threading" Version="4.3.0" />
+    <PackageReference Include="System.Threading.Tasks" Version="4.3.0" />
+    <PackageReference Include="System.Xml.ReaderWriter" Version="4.3.1" />
+    <PackageReference Include="System.Xml.XDocument" Version="4.3.0" />
+  </ItemGroup>
 
-   <ItemGroup>
-     <Reference Include="System.Management" />
-     <Reference Include="System.Security" />
-     <Reference Include="System.ServiceProcess" />
-   </ItemGroup>
-
-   <ItemGroup>
-     <None Update="Azure\AzureUtils.d.ts">
-       <DependentUpon>AzureUtils.cs</DependentUpon>
-     </None>
-     <None Update="GlobalSuppressions.d.ts">
-       <DependentUpon>GlobalSuppressions.cs</DependentUpon>
-     </None>
-     <None Update="Security\CredentialFromUiPrompt.d.ts">
-       <DependentUpon>CredentialFromUiPrompt.cs</DependentUpon>
-     </None>
-     <None Update="Security\CredentialManagement\CredentialManagerKeys.d.ts">
-       <DependentUpon>CredentialManagerKeys.cs</DependentUpon>
-     </None>
-     <None Update="Security\TerminalServicesMgr.d.ts">
-       <DependentUpon>TerminalServicesMgr.cs</DependentUpon>
-     </None>
-     <None Update="Security\Utility.d.ts">
-       <DependentUpon>Utility.cs</DependentUpon>
-     </None>
-     <None Update="Utility\Miscellaneous.d.ts">
-       <DependentUpon>Miscellaneous.cs</DependentUpon>
-     </None>
-     <None Update="Utility\XmlFile.d.ts">
-       <DependentUpon>XmlFile.cs</DependentUpon>
-     </None>
-   </ItemGroup>
-
+  <ItemGroup>
+    <None Update="Azure\AzureUtils.d.ts">
+      <DependentUpon>AzureUtils.cs</DependentUpon>
+    </None>
+    <None Update="GlobalSuppressions.d.ts">
+      <DependentUpon>GlobalSuppressions.cs</DependentUpon>
+    </None>
+    <None Update="Security\CredentialFromUiPrompt.d.ts">
+      <DependentUpon>CredentialFromUiPrompt.cs</DependentUpon>
+    </None>
+    <None Update="Security\CredentialManagement\CredentialManagerKeys.d.ts">
+      <DependentUpon>CredentialManagerKeys.cs</DependentUpon>
+    </None>
+    <None Update="Security\TerminalServicesMgr.d.ts">
+      <DependentUpon>TerminalServicesMgr.cs</DependentUpon>
+    </None>
+    <None Update="Security\Utility.d.ts">
+      <DependentUpon>Utility.cs</DependentUpon>
+    </None>
+    <None Update="Utility\Miscellaneous.d.ts">
+      <DependentUpon>Miscellaneous.cs</DependentUpon>
+    </None>
+    <None Update="Utility\XmlFile.d.ts">
+      <DependentUpon>XmlFile.cs</DependentUpon>
+    </None>
+  </ItemGroup>
 </Project>

@@ -8,12 +8,6 @@ namespace helpsharp.Security
 {
     public class Impersonation
     {
-        #region Private Fields
-
-        private static WindowsImpersonationContext _impersonationContext;
-
-        #endregion Private Fields
-
         #region Public Enums
 
         [Flags]
@@ -177,7 +171,7 @@ namespace helpsharp.Security
         /// Impersonates a passed Windows Identity
         /// </summary>
         /// <param name="identity"></param>
-        public static void Impersonate(WindowsIdentity identity, bool loadProfile)
+        public static void ImpersonateAndRun(WindowsIdentity identity, bool loadProfile, Action action)
         {
             if (loadProfile)
             {
@@ -192,11 +186,10 @@ namespace helpsharp.Security
                 }
             }
 
-            _impersonationContext = identity.Impersonate();
-            if (_impersonationContext == null)
+            WindowsIdentity.RunImpersonated(identity.AccessToken, () =>
             {
-                throw new Exception("__impersonationContext is null");
-            }
+                action.Invoke();
+            });
         }
 
         [DllImport("advapi32.dll", SetLastError = true)]
@@ -224,22 +217,6 @@ namespace helpsharp.Security
         [DllImport("advapi32.dll", SetLastError = true)]
         [return: MarshalAs(UnmanagedType.Bool)]
         public static extern bool OpenProcessToken(IntPtr processHandle, uint desiredAccess, out IntPtr tokenHandle);
-
-        /// <summary>
-        /// Unimpersonate
-        /// </summary>
-        public static void UnImpersonate()
-        {
-            if (_impersonationContext == null)
-            {
-                // [Manas]: log this
-                ////throw new Exception("__impersonationContext is null");
-            }
-            else
-            {
-                _impersonationContext.Undo();
-            }
-        }
 
         #endregion Public Methods
     }

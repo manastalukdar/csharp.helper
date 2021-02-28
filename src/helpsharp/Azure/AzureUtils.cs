@@ -1,7 +1,6 @@
 ﻿using System;
 using System.IO;
-using Microsoft.WindowsAzure.Storage;
-using Microsoft.WindowsAzure.Storage.Auth;
+using Azure.Storage.Blobs;
 
 namespace helpsharp.Azure
 {
@@ -23,17 +22,12 @@ namespace helpsharp.Azure
         /// <exception cref="System.ArgumentNullException">
         ///     accountName or accountKey or container or sourceFile
         /// </exception>
-        public void UploadToBlobStorage(string accountName, string accountKey, string container, string sourceFile,
+        public void UploadToBlobStorage(string connectionString, string container, string sourceFile,
             string destFile)
         {
-            if (accountName == null)
+            if (connectionString == null)
             {
-                throw new ArgumentNullException(nameof(accountName));
-            }
-
-            if (accountKey == null)
-            {
-                throw new ArgumentNullException(nameof(accountKey));
+                throw new ArgumentNullException(nameof(connectionString));
             }
 
             if (container == null)
@@ -46,15 +40,14 @@ namespace helpsharp.Azure
                 throw new ArgumentNullException(nameof(sourceFile));
             }
 
-            var account = new CloudStorageAccount(new StorageCredentials(accountName, accountKey), false);
-            var cbcClient = account.CreateCloudBlobClient();
-            var cbcContainer = cbcClient.GetContainerReference(container);
-            cbcContainer.CreateIfNotExists();
+            var blobContainerClient = new BlobContainerClient(connectionString, container);// account.CreateCloudBlobClient();
 
-            var blockBlob = cbcContainer.GetBlockBlobReference(destFile);
+            blobContainerClient.CreateIfNotExists();
+
+            var blockBlob = blobContainerClient.GetBlobClient(destFile);
             using (var fileStream = File.OpenRead(sourceFile))
             {
-                blockBlob.UploadFromStream(fileStream);
+                blockBlob.Upload(fileStream);
             }
         }
 

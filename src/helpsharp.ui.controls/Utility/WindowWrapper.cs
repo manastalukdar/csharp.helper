@@ -1,8 +1,9 @@
 ﻿using System;
+using System.Windows.Forms;
 
 namespace csharp.ui.controls.Utility
 {
-    public class WindowWrapper : System.Windows.Forms.IWin32Window
+    public class WindowWrapper : IWin32Window
     {
         #region Private Fields
 
@@ -25,6 +26,8 @@ namespace csharp.ui.controls.Utility
         {
             get { return _hwnd; }
         }
+
+        IntPtr IWin32Window.Handle => throw new NotImplementedException();
 
         #endregion Public Properties
     }
