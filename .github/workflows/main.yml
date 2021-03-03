@@ -17,10 +17,10 @@ jobs:
       - name: Add msbuild to PATH
         uses: microsoft/setup-msbuild@v1.0.2
         with:
-          vs-version: '[16.4, 16.9]'
+          vs-version: '16.9.0-pre.5.0'
       - name: Setup NuGet
         uses: NuGet/setup-nuget@v1
-      # - name: Restore NuGet Packages
-      #   run: nuget restore helpsharp.sln
+      - name: Restore NuGet Packages
+        run: nuget restore helpsharp.sln
       - name: Build
         run: msbuild helpsharp.sln /p:Configuration=Release
