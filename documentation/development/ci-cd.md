@@ -2,17 +2,17 @@
 
 1. [Current Status](#current-status)
 2. [Methodology](#methodology)
-    1. [Committing code](#committing-code)
-    2. [Versioning of packages/deliverables](#versioning-of-packagesdeliverables)
-    3. [Builds](#builds)
-    4. [Deployments](#deployments)
-    5. [Status badges](#status-badges)
+   1. [Committing code](#committing-code)
+   2. [Versioning of packages/deliverables](#versioning-of-packagesdeliverables)
+   3. [Builds](#builds)
+   4. [Deployments](#deployments)
+   5. [Status badges](#status-badges)
 
 ## Current Status
 
 | Platform       | Provider        | Operations                              | Status                                                                                                                                                                                                                                                                                 |
 | -------------- | --------------- | --------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Linux          | GitHub          | Build, Test, Deploy to gh-pages         | [![build-test-deploy](https://github.com/manastalukdar/helpsharp/workflows/build-test-deploy/badge.svg)](https://github.com/manastalukdar/helpsharp/actions)                                                                                                                   |
+| Linux          | GitHub          | Build, Test, Deploy to gh-pages         | [![build-test](https://github.com/manastalukdar/helpsharp/actions/workflows/main.yml/badge.svg)](https://github.com/manastalukdar/helpsharp/actions/workflows/main.yml)                                                                                                                   |
 | Linux          | GitHub          | Linter                                  | [![Lint Code Base](https://github.com/manastalukdar/helpsharp/actions/workflows/linter.yml/badge.svg)](https://github.com/manastalukdar/helpsharp/actions/workflows/linter.yml)                                                                                                |
 | Windows, Linux | AppVeyor        | Build, Test                             | [![Build status](https://ci.appveyor.com/api/projects/status/y9qup8owf4e53m8h?svg=true)](https://ci.appveyor.com/project/manastalukdar/helpsharp)                                                                                                                                  |
 | Linux          | Travis CI       | Build, Test, Deploy to gh-pages         | [![Build Status](https://travis-ci.org/manastalukdar/helpsharp.svg?branch=main)](https://travis-ci.com/manastalukdar/helpsharp)                                                                                                                                                |
