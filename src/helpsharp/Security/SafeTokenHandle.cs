@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Runtime.ConstrainedExecution;
 using System.Runtime.InteropServices;
 using System.Security;
@@ -29,7 +29,6 @@ namespace helpsharp.Security
         #region Private Methods
 
         [DllImport("kernel32.dll")]
-        [ReliabilityContract(Consistency.WillNotCorruptState, Cer.Success)]
         [SuppressUnmanagedCodeSecurity]
         [return: MarshalAs(UnmanagedType.Bool)]
         private static extern bool CloseHandle(IntPtr handle);

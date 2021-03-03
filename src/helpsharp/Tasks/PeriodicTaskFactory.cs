@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -81,7 +81,7 @@ namespace helpsharp.Tasks
         /// ------------------------------------------------------------------------------------------------
         private static void CheckIfCancelled(CancellationToken cancellationToken)
         {
-            if (cancellationToken == null)
+            if (cancellationToken == default)
             {
                 throw new ArgumentNullException(nameof(cancellationToken));
             }

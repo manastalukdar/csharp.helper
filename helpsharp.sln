@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31019.194
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "helpsharp", "helpsharp\helpsharp.csproj", "{C9BA7FED-6A68-4CB2-8CF4-7C8AC26CF3FA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "helpsharp", "src\helpsharp\helpsharp.csproj", "{C9BA7FED-6A68-4CB2-8CF4-7C8AC26CF3FA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "helpsharp.ui.controls", "helpsharp.ui.controls\helpsharp.ui.controls.csproj", "{DE1EC8B2-89E0-4E43-B4B9-18FD8E0B096A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "helpsharp.ui.controls", "src\helpsharp.ui.controls\helpsharp.ui.controls.csproj", "{DE1EC8B2-89E0-4E43-B4B9-18FD8E0B096A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
