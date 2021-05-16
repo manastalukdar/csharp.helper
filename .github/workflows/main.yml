@@ -25,9 +25,11 @@ jobs:
         uses: NuGet/setup-nuget@v1
       # - name: Restore NuGet Packages
       #   run: nuget restore helpsharp.sln
+      - name: Choco help
+        uses: crazy-max/ghaction-chocolatey@v1
+        with:
+          args: install visualstudio2019-workload-netcorebuildtools
       - name: Set dotnet sdk version
-        env:
-            DOTNETVER: dotnet --version
         run: |
               echo ::set-env name=DOTNETVER::$(dotnet --version)
               echo "${DOTNETVER}"
