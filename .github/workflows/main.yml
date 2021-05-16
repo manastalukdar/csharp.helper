@@ -14,26 +14,24 @@ jobs:
         with:
           dotnet-version: '6.0'
           include-prerelease: True
-      - run: dotnet --version
-      - run: dotnet --info
-      - run: dotnet --list-sdks
+      - name: dotnet commands
+      - run: |
+              dotnet --version
+              dotnet --info
+              dotnet --list-sdks
       - name: Add msbuild to PATH
         uses: microsoft/setup-msbuild@v1.0.2
         with:
           vs-version: '[16.9, 16.10)'
-      - name: Setup NuGet
-        uses: NuGet/setup-nuget@v1
-      # - name: Restore NuGet Packages
-      #   run: nuget restore helpsharp.sln
-      - name: Choco help
+      - name: Choco install netcorebuildtools
         uses: crazy-max/ghaction-chocolatey@v1
         with:
-          args: install visualstudio2019-workload-netcorebuildtools
-      - name: Set dotnet sdk version
-        run: |
-              echo ::set-env name=DOTNETVER::$(dotnet --version)
-              echo "${DOTNETVER}"
-      - run: echo ::set-env name=MSBuildSDKsPath::"C:\Users\runneradmin\AppData\Local\Microsoft\dotnet\sdk\6.0.100-preview.3.21202.5\Sdks"
+          args: install visualstudio2019-workload-netcorebuildtools --no-progress
+        if: runner.os == 'Windows'
+      - name: Setup NuGet
+        uses: NuGet/setup-nuget@v1
+      - name: Restore NuGet Packages
+        run: nuget restore helpsharp.sln
       - run: dotnet nuget locals all -c
       - name: Build
         run: msbuild helpsharp.sln /p:Configuration=Release
