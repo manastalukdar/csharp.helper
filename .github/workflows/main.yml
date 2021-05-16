@@ -29,8 +29,9 @@ jobs:
         env:
             DOTNETVER: dotnet --version
         run: echo "${DOTNETVER}"
-      - run: set MSBuildSDKsPath="C:\Users\runneradmin\AppData\Local\Microsoft\dotnet\sdk\$(dotnet --version)\Sdks"
-      - run: set MSBuildSDKsPath="C:\Users\runneradmin\AppData\Local\Microsoft\dotnet\sdk\${DOTNETVER}\Sdks"
+      - run: echo ::set-env name=DOTNETVER::$(dotnet --version)
+      - run: echo "${DOTNETVER}"
+      - run: set MSBuildSDKsPath="C:\Users\runneradmin\AppData\Local\Microsoft\dotnet\sdk\6.0.100-preview.3.21202.5\Sdks"
       - run: dotnet nuget locals all -c
       - name: Build
         run: msbuild helpsharp.sln /p:Configuration=Release
