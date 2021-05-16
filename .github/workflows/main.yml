@@ -19,9 +19,9 @@ jobs:
         uses: microsoft/setup-msbuild@v1.0.2
         with:
           vs-version: '[16.9, 16.10)'
-      - name: Setup NuGet
-        uses: NuGet/setup-nuget@v1
-      - name: Restore NuGet Packages
-        run: nuget restore helpsharp.sln
+      # - name: Setup NuGet
+      #   uses: NuGet/setup-nuget@v1
+      # - name: Restore NuGet Packages
+      #   run: nuget restore helpsharp.sln
       - name: Build
         run: msbuild helpsharp.sln /p:Configuration=Release
