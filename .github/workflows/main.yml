@@ -15,7 +15,7 @@ jobs:
           dotnet-version: '6.0'
           include-prerelease: True
       - name: dotnet commands
-      - run: |
+        run: |
               dotnet --version
               dotnet --info
               dotnet --list-sdks
