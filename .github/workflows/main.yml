@@ -26,7 +26,8 @@ jobs:
       - name: Choco install netcorebuildtools
         uses: crazy-max/ghaction-chocolatey@v1
         with:
-          args: install visualstudio2019-workload-netcorebuildtools --no-progress
+          # args: install visualstudio2019-workload-netcorebuildtools --no-progress
+          args: install visualstudio2019buildtools --package-parameters "--allWorkloads --includeRecommended --includeOptional --passive --locale en-US" --no-progress
         if: runner.os == 'Windows'
       - name: Setup NuGet
         uses: NuGet/setup-nuget@v1
